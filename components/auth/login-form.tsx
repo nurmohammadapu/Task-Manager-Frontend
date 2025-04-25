@@ -14,6 +14,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { login } from "@/services/operations/authAPI"; 
 import toast from "react-hot-toast"; // Import toast from react-hot-toast
 
+type ErrorResponse = {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+};
+
 export default function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -44,11 +52,10 @@ export default function LoginForm() {
           id: loadingToast, // Dismiss the loading toast
         });
       }
-    } catch (err: any) {
-      // Handle any error that occurs during the API call
-
-      // Check if there's a server-side error message and show it
-      const errorMessage = err?.response?.data?.message || "Login failed. Please try again later.";
+    } catch (err: unknown) {
+      const error = err as ErrorResponse;
+      const errorMessage =
+        error?.response?.data?.message || "Login failed. Please try again later.";
       console.error(err);
       toast.error(errorMessage, {
         id: loadingToast, // Dismiss the loading toast
@@ -83,10 +90,10 @@ export default function LoginForm() {
           <Field.Root>
             <Input
               id="password"
-              type={showPassword ? "text" : "password"} // Toggle between text and password
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              pr="3rem" // Add space for the icon
+              pr="3rem"
             />
             <Field.ErrorText>This field is required</Field.ErrorText>
             <Box
@@ -118,7 +125,7 @@ export default function LoginForm() {
         </Button>
 
         <Box textAlign="center" fontSize="sm" mt={4}>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" color="blue.500" textDecoration="underline">
             Sign up
           </Link>

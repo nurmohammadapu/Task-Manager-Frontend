@@ -33,7 +33,7 @@ export default function TaskList({ tasks, onEditTask }: TaskListProps) {
         <AlertContent>
           <AlertTitle>No tasks available yet!</AlertTitle>
           <AlertDescription>
-            You can add tasks by clicking the "Add Task" button.
+            You can add tasks by clicking the &aposAdd Task&apos button.
           </AlertDescription>
         </AlertContent>
         <Button colorScheme="teal" variant="solid" mt={3}>

@@ -66,15 +66,15 @@ export default function TaskForm({ onClose, taskToEdit }: TaskFormProps) {
     e.preventDefault()
     if (!validateForm()) return
 
-    const taskData: Task = {
-      id: taskToEdit ? taskToEdit.id : uuidv4(),
-      title,
-      description,
-      category,
-      completed,
-      createdAt: taskToEdit ? taskToEdit.createdAt : new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    }
+    // const taskData: Task = {
+    //   id: taskToEdit ? taskToEdit.id : uuidv4(),
+    //   title,
+    //   description,
+    //   category,
+    //   completed,
+    //   createdAt: taskToEdit ? taskToEdit.createdAt : new Date().toISOString(),
+    //   updatedAt: new Date().toISOString(),
+    // }
 
     // taskToEdit ? dispatch(updateTask(taskData)) : dispatch(addTask(taskData))
     onClose()
