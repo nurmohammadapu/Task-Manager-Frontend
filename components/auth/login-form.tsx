@@ -45,7 +45,7 @@ export default function LoginForm() {
         toast.success("Login successful! Redirecting...", {
           id: loadingToast, // Dismiss the loading toast
         });
-        router.push("/"); // Redirect to the tasks page
+        router.push("/tasks"); // Redirect to the tasks page
       } else {
         // If the login fails, show the server-side error message in the toast
         toast.error(response.data.message || "Login failed.", {

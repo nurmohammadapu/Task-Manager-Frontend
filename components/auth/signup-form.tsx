@@ -59,12 +59,15 @@ export default function SignupForm() {
       } else {
         setError(response.data.message || "Failed to send OTP");
       }
-    } catch (err: any) {
-      setError(
-        err.response?.data?.message ||
-        err.message ||
-        "An error occurred while sending OTP"
-      );
+    } catch (err: unknown) {
+      if (err && typeof err === "object" && "response" in err) {
+        const axiosError = err as { response?: { data?: { message?: string } } };
+        setError(axiosError.response?.data?.message || "An error occurred while sending OTP");
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred while sending OTP");
+      }
     } finally {
       setSendingOtp(false);
     }
@@ -89,12 +92,15 @@ export default function SignupForm() {
       } else {
         setError(response.data.message || "Registration failed");
       }
-    } catch (err: any) {
-      setError(
-        err.response?.data?.message ||
-        err.message ||
-        "An error occurred during registration"
-      );
+    } catch (err: unknown) {
+      if (err && typeof err === "object" && "response" in err) {
+        const axiosError = err as { response?: { data?: { message?: string } } };
+        setError(axiosError.response?.data?.message || "An error occurred during registration");
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred during registration");
+      }
     } finally {
       setIsLoading(false);
     }

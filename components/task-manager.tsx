@@ -1,22 +1,22 @@
 "use client"
 
 import { useState } from "react"
-// import { useDispatch, useSelector } from "react-redux" // Redux logic commented out for now
-// import type { RootState } from "@/store" // Redux types commented out
+// import { useDispatch, useSelector } from "react-redux"
+// import type { RootState } from "@/store"
 import TaskForm from "@/components/task-form"
 import TaskList from "@/components/task-list"
 import TaskFilter from "@/components/task-filter"
 import { Button, Grid, GridItem, VStack } from "@chakra-ui/react"
 import { Plus } from "lucide-react"
 import type { Task } from "@/types/task"
-// import { setFilterCategory, setFilterStatus, setSearchQuery } from "@/store/filterSlice" // Redux actions commented out
+// import { setFilterCategory, setFilterStatus, setSearchQuery } from "@/store/filterSlice"
 
 export default function TaskManager() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null)
-  // const dispatch = useDispatch() // Dispatch logic commented out
-  // const { tasks } = useSelector((state: RootState) => state.tasks) // Redux state selection commented out
-  // const { category, status, searchQuery } = useSelector((state: RootState) => state.filter) // Redux state selection commented out
+  // const dispatch = useDispatch()
+  // const { tasks } = useSelector((state: RootState) => state.tasks)
+  // const { category, status, searchQuery } = useSelector((state: RootState) => state.filter)
 
   const handleEditTask = (task: Task) => {
     setTaskToEdit(task)
@@ -28,19 +28,14 @@ export default function TaskManager() {
     setTaskToEdit(null)
   }
 
-  const handleFilterChange = (type: string, value: string) => {
-    // if (type === "category") {
-    //   dispatch(setFilterCategory(value)) // Redux action commented out
-    // } else if (type === "status") {
-    //   dispatch(setFilterStatus(value)) // Redux action commented out
-    // }
+  const handleFilterChange = (_type: string, _value: string) => {
+    // Redux logic is commented out
   }
 
-  const handleSearchChange = (query: string) => {
-    // dispatch(setSearchQuery(query)) // Redux action commented out
+  const handleSearchChange = (_query: string) => {
+    // Redux logic is commented out
   }
 
-  // Sample filteredTasks data (for now using placeholder data)
   const filteredTasks: Task[] = [] // Placeholder for filtered tasks
 
   return (
@@ -53,9 +48,9 @@ export default function TaskManager() {
           <TaskFilter
             onFilterChange={handleFilterChange}
             onSearchChange={handleSearchChange}
-            currentCategory="all" // Placeholder value
-            currentStatus="all" // Placeholder value
-            searchQuery="" // Placeholder value
+            currentCategory="all"
+            currentStatus="all"
+            searchQuery=""
           />
         </VStack>
       </GridItem>
